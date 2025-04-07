@@ -1,15 +1,15 @@
 import pywhatkit as pwk
+import argparse
 
-# Define recipient's phone number (with country code)
-phone_number = "+916374560135"  # Replace with the recipient's number
-
-# Define message
-message = "Hello! This is an automated message sent using Python."
-
-hours = 19
-minutes = 00
+# Parse command-line arguments
+parser = argparse.ArgumentParser(description="Send a WhatsApp message using Python.")
+parser.add_argument("phone_number", type=str, help="Recipient's phone number (with country code).")
+parser.add_argument("message", type=str, help="Message to send.")
+parser.add_argument("hours", type=int, help="Hour (24-hour format) to send the message.")
+parser.add_argument("minutes", type=int, help="Minute to send the message.")
+args = parser.parse_args()
 
 # Send the message
-pwk.sendwhatmsg(phone_number, message,hours,minutes)
+pwk.sendwhatmsg(args.phone_number, args.message, args.hours, args.minutes)
 
 print("Message Scheduled Successfully!")
